@@ -20,19 +20,21 @@ vec4 nlWater(
   float fractCposY, float camDist, highp float t
 ) {
 
+  float bumpAmt = NL_WATER_BUMP*(1.0 + NL_STORM_WATER_BUMP*env.rainFactor); // rougher water in storms
+
   vec2 bump = vec2_splat(movingNoise2D(gPos.xz + gPos.yy, NL_WATER_WAVE_SPEED*t, 0.6));
 
   vec3 nrm;
   if (fractCposY > 0.0) { // top plane
-    nrm.xz = bump*NL_WATER_BUMP;
+    nrm.xz = bump*bumpAmt;
     nrm.y = -1.0;
     /*if (fractCposY>0.8 || fractCposY<0.9) { // flat plane
     } else { // slanted plane and highly slanted plane
     }*/
   } else { // reflection for side plane
     bump *= 0.5 + 0.5*sin(3.0*t*NL_WATER_WAVE_SPEED + cPos.y*PI_HALF);
-    nrm.xz = normalize(viewDir.xz) + bump.y*(1.0-viewDir.xz*viewDir.xz)*NL_WATER_BUMP;
-    nrm.y = bump.x*NL_WATER_BUMP;
+    nrm.xz = normalize(viewDir.xz) + bump.y*(1.0-viewDir.xz*viewDir.xz)*bumpAmt;
+    nrm.y = bump.x*bumpAmt;
   }
   nrm = normalize(nrm);
 
@@ -71,7 +73,7 @@ vec4 nlWater(
 
   #ifdef NL_WATER_WAVE
     if (camDist < 14.0) {
-      wPos.y -= 0.5*(bump.x+0.5)*NL_WATER_BUMP;
+      wPos.y -= 0.5*(bump.x+0.5)*bumpAmt;
     }
   #endif
 

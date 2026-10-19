@@ -153,11 +153,21 @@ vec4 renderAurora(vec3 p, float t, float rain, float dayFactor) {
   float d1 = sin(p.z*0.1 - t + sin(p.x*0.2));
   float d2 = sin(p.z*0.1 + 1.0*sin(d0 + d1*2.0) + d1*2.0 + d0*1.0);
   d0 *= d0; d1 *= d1; d2 *= d2;
+  float s = d2;
   d2 = d0/(1.0 + d2/NL_AURORA_WIDTH);
+
+  // three-colour palette: green <-> violet with teal highlights
+  vec3 auroraCol = mix(NL_AURORA_COL1, NL_AURORA_COL2, d1);
+  auroraCol = mix(auroraCol, NL_AURORA_COL3, 0.7*s);
+
+  #ifdef NL_AURORA_SHIMMER
+    // vertical ray shimmer
+    d2 *= 1.0 - NL_AURORA_SHIMMER + NL_AURORA_SHIMMER*sin(p.x*25.0 + p.z*10.0 + t*300.0);
+  #endif
 
   float mask = max(-dayFactor, 0.0);
   mask *= mask*(1.0-0.8*rain);
-  return vec4(NL_AURORA*mix(NL_AURORA_COL1,NL_AURORA_COL2,d1),1.0)*d2*mask;
+  return vec4(NL_AURORA*auroraCol,1.0)*d2*mask;
 }
 #endif
 

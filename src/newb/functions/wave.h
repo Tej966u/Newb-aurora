@@ -135,6 +135,7 @@ void nlWave(
   bool shouldWave = ((isTreeLeaves || isPlants || isVines) && isColored && !isLeafLitter) || (isFarmPlant && isTop);
 
   float windStrength = lit.y*(noise1D(t*0.36) + rainFactor*0.4)*(1.0-waveFade);
+  windStrength *= 1.0 + (NL_STORM_WIND-1.0)*rainFactor; // stronger wind in storms
 
   // darken farm plants bottom
   light *= isFarmPlant && !isTop ? 0.7 : 1.1;
