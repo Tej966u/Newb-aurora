@@ -98,6 +98,10 @@
 #define NL_GLOW_SHIMMER_SPEED 0.9 // 0.5 slow - 2.0 fast
 //#define NL_GLOW_LEAK 0.6        // [toggle] 0.08 subtle ~ 1.0 100% brightness of NL_GLOW_TEX
 
+/* Storm effects (only active while raining/thundering) */
+#define NL_STORM_WIND 2.2          // 1.0 same as normal ~ 4.0 violent plant/leaf/lantern sway in storms
+#define NL_STORM_WATER_BUMP 2.0    // 0.0 none ~ 5.0 very rough water in storms
+
 /* Waving */
 #define NL_PLANTS_WAVE 0.05    // [toggle] 0.02 gentle ~ 0.4 violent
 #define NL_LANTERN_WAVE 0.16   // [toggle] 0.05 subtle ~ 0.4 large swing
@@ -162,12 +166,14 @@
 #define NL_CLOUD3_SHADOW_OFFSET 0.3      // 0.05 minimal ~ 1.0 large
 
 /* Aurora settings */
-#define NL_AURORA 1.2           // [toggle] 0.4 dim ~ 4.0 very bright
-#define NL_AURORA_VELOCITY 0.03 // 0.0 static ~ 0.3 very fast
+#define NL_AURORA 1.8           // [toggle] 0.4 dim ~ 4.0 very bright
+#define NL_AURORA_VELOCITY 0.04 // 0.0 static ~ 0.3 very fast
 #define NL_AURORA_SCALE 0.04    // 0.002 large ~ 0.4 tiny
-#define NL_AURORA_WIDTH 0.18    // 0.04 thin line ~ 0.4 thick lines
-#define NL_AURORA_COL1 vec3(0.1,1.0,0.0)
-#define NL_AURORA_COL2 vec3(0.1,0.0,1.0)
+#define NL_AURORA_WIDTH 0.22    // 0.04 thin line ~ 0.4 thick lines
+#define NL_AURORA_COL1 vec3(0.1,1.0,0.3)  // green
+#define NL_AURORA_COL2 vec3(0.3,0.1,1.0)  // violet
+#define NL_AURORA_COL3 vec3(0.0,0.9,0.9)  // teal highlights
+#define NL_AURORA_SHIMMER 0.25  // [toggle] 0.1 subtle ~ 0.5 strong moving ray shimmer
 
 #define NL_CLOUD_AURORA_REFLECTION // [toggle] simple clouds/aurora reflection
 
