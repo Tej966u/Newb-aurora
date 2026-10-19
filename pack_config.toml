@@ -1,0 +1,88 @@
+name = "Newb Aurora Storm"
+version = [0, 16, 56]
+min_supported_mc_version = [1, 26, 50]
+description = '''
+§c%w
+§7- Newb X mod: brighter aurora, stormy water & wind, mobile Lite mode
+%v
+§3https://newb-shader.devendrn.com/
+''' # %w = patch warning, %v = version
+authors = ["Mist TvT"]
+url = "https://github.com/devendrn/newb-x-mcbe"
+uuid = "de7db4a2-b3bf-421b-a00d-9e3784dd3a50" # Use https://www.uuidgenerator.net/version4
+materials = ["Actor", "ActorGlint", "ActorMultiTexture", "Clouds", "EndSky", "ItemInHandColor", "ItemInHandColorGlint", "ItemInHandTextured", "RenderChunk","Sky", "Stars", "SunMoon", "Weather"]
+
+[info] 
+copyright = '''
+Copyright © 2026 %a
+
+Modified version of Newb X Legacy by devendrn and "Newb Shader" Contributors (https://github.com/devendrn/newb-x-mcbe), used under the MIT License. The original MIT copyright and permission notice is included in the LICENSE file of the source repository.
+''' # %a = authors
+credits = '''
+Original shader: devendrn and Newb Shader Contributors (MIT)
+'''
+
+# subpacks are arranged in left to right order
+# right-most subpack is enabled by default
+[[subpack]]
+define = "REALISTIC_CLOUDS"
+materials = ["Clouds", "RenderChunk"]
+description = '''
+Realistic clouds
+'''
+
+[[subpack]]
+define = "ROUNDED_CLOUDS"
+materials = ["Clouds"]
+description = '''
+Rounded Clouds
+'''
+
+[[subpack]]
+define = "BOX_CLOUDS"
+materials = ["Clouds", "RenderChunk"]
+description = '''
+Box Clouds
+'''
+
+[[subpack]]
+define = "CHUNK_ANIM"
+materials = ["RenderChunk"]
+description = '''
+Chunk loading animation
+'''
+
+[[subpack]]
+define = "NO_WAVE_NO_FOG"
+materials = ["RenderChunk"]
+description = '''
+No fog and wave effects
+'''
+
+[[subpack]]
+define = "NO_FOG"
+materials = ["RenderChunk"]
+description = '''
+No fog effect
+'''
+
+[[subpack]]
+define = "NO_WAVE"
+materials = ["RenderChunk"]
+description = '''
+No wave effects
+'''
+
+[[subpack]]
+define = "LITE"
+materials = ["Sky", "RenderChunk", "Actor", "ActorGlint", "EndSky", "Clouds", "SunMoon", "Weather", "ItemInHandTextured", "ItemInHandColor", "ItemInHandColorGlint", "Stars"]
+description = '''
+Lite: many effects disabled. Best for low-end phones
+'''
+
+[[subpack]]
+define = "DEFAULT"
+materials = []
+description = '''
+Default
+'''
