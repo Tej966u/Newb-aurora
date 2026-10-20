@@ -3,7 +3,7 @@
 A mobile-friendly shader for **Minecraft Bedrock** (via **MB Loader**), with a vivid northern-lights sky, living storms, per-biome ambience and extra atmosphere for the Nether and the End.
 
 Based on **Newb X Legacy 0.16.56** by devendrn and the Newb Shader contributors (MIT License).
-Modified by **Mist**.
+Modified by **Mist TvT**.
 
 > Status: all changes beyond Newb X Legacy are **new and experimental**. Please report anything that looks wrong.
 
@@ -47,7 +47,7 @@ Modified by **Mist**.
 
 ### Other dimensions
 - **Nether**: warm ember haze in the fog
-- **The End**: deeper purple void haze
+- **The End**: deeper purple void haze and a **big ringed planet** in the sky with glowing atmosphere and slowly moving cloud bands
 
 ### Performance
 - Lighter defaults: shorter wave range, and the extra cloud layer is off
@@ -85,6 +85,7 @@ All options are in `src/newb/config.h`. Each line has a comment with its range. 
 | `NL_CELESTIAL_WOBBLE` | Sun/moon sway in degrees |
 | `NL_DESERT_HAZE`, `NL_SWAMP_MIST`, `NL_BIRCH_SUN`, `NL_PALE_FOG`, `NL_DEEPDARK_DARKEN`, `NL_SNOW_BIOME`, `NL_JUNGLE_HUMID`, `NL_BADLANDS_DUST`, `NL_CHERRY_DREAM`, `NL_MUSHROOM_SPORE` | Biome strength (0.0 turns one off) |
 | `NL_NETHER_EMBER`, `NL_END_VOID` | Nether and End haze |
+| `NL_END_PLANET`, `NL_END_PLANET_RING`, `NL_END_PLANET_SIZE`, `NL_END_PLANET_DIR`, `NL_END_PLANET_COL1/2/3`, `NL_END_PLANET_ATMOS`, `NL_END_PLANET_GLOW` | End planet: on/off, ring, size, position, colours, glow |
 
 Comment out a line with `//` to turn an effect off. To save performance, turn off the effects you don't need.
 
@@ -112,6 +113,7 @@ On a PC you can instead run:
 
 - **Biome effects don't show.** Biomes are detected from custom fog colours set in `assets/biomes_client.json` and `assets/fogs/`. If Minecraft ignores them, the effects stay off. Pick the **Biome Debug** subpack and walk through the biomes: red = desert, green = swamp, yellow = birch, white = pale garden, blue = deep dark, cyan = snowy, orange = jungle, dark red = badlands, magenta = cherry grove, purple = mushroom fields. If nothing tints, the detection is not working on your Minecraft version, please report it.
 - **Pale garden eyes don't glow.** This assumes the Creaking's eyes use Minecraft's emissive material. If they don't, only the white fog applies.
+- **No planet in the End, or it is below the horizon.** Raise the `y` value of `NL_END_PLANET_DIR` in `config.h`, or flip its sign.
 - **Lag.** Use the **Lite** subpack, lower `NL_WAVE_RANGE`, comment out `NL_AURORA_LAYER2`, or comment out `NL_AURORA`.
 - **Odd fog colours without the shader.** The pack changes some biome fog colours so the shader can detect biomes. Load the pack only together with MB Loader.
 - **Black or pink blocks.** Your Minecraft version may be unsupported or a shader failed to compile. Send a screenshot and your device model.
