@@ -1,143 +1,125 @@
-# Newb X Legacy
+# Newb Aurora Storm
 
-**Newb X Legacy** is a RenderDragon successor to the legacy GLSL shader, [Newb Shader](https://github.com/devendrn/newb-shader-mcbe). It is an enhanced vanilla shader that focuses on being lightweight and having soft aesthetics. It supports Minecraft Bedrock 1.26+ (Windows/Android/iOS).
+A mobile-friendly shader for **Minecraft Bedrock** (via **MB Loader**), with a vivid northern-lights sky, living storms, per-biome ambience and extra atmosphere for the Nether and the End.
 
-<br>
+Based on **Newb X Legacy 0.16.56** by devendrn and the Newb Shader contributors (MIT License).
+Modified by **Mist TvT**.
 
-![Screenshots](docs/screenshots.jpg "Newb X Legacy 15.47, MCBE 1.21.0")
+> Status: all changes beyond Newb X Legacy are **new and experimental**. Please report anything that looks wrong.
 
-## Downloads
+---
 
-You can download the shader pack from [release page](https://github.com/devendrn/newb-x-mcbe/releases/latest).
+## Features
 
-## Installation
+### Sky
+- **Richer northern lights**: two drifting curtains, a green > violet > teal palette with a crimson-pink fringe, slow pulsing and moving ray shimmer
+- **Aurora ground glow**: at night the aurora colours softly light the world
+- **Sun and moon sway** slightly so the sky feels alive
+- Soft clouds by default (cheap and pretty)
 
-> [!NOTE]
-> Shaders are not officially supported on Minecraft Bedrock. The following are unofficial ways to load shaders. There are multiple ways to get it working. Start with the recommended method. If that doesn't work try the other method.
+### Weather
+- **Gloomy rain**: outdoor scenes darken while it rains so the rain stands out
+- **Clearer rain streaks** and a **bright splash** where rain meets the ground
+- **Snowflakes dissolve** softly just above the ground
+- **Storm wind**: plants, leaves and lanterns sway harder as rain increases
+- **Storm waves**: water gets rougher during rain
 
-### Android
+### Quality of life
+- **Twilight mist**: a soft golden mist at sunrise and sunset
+- Slightly more vivid colours by default (`NL_SATURATION`)
 
-| **Using MB Loader App** |
-|:-|
-| 1. Install [MB Loader App](https://play.google.com/store/apps/details?id=io.github.bambosan.mbloader) |
-| 2. Launch Minecraft from MB Loader. |
-| 2. Import the resource pack and activate it in global resources. |
+### Light
+- **Warm glow around torches and other light sources**, plus a soft warm haze in the fog around them
 
-### Windows
+### Biome ambience (experimental)
+| Biome | Effect |
+|---|---|
+| Desert | Warm orange/yellow tint with sandy dust in the air |
+| Swamp / Mangrove swamp | Thick greenish mist |
+| Birch forest | Extremely sunny: brighter, warmer light and clearer air |
+| Pale garden | White-out fog; glowing mob eyes stay visible in it |
+| Deep dark | Darker, colder fog and lighting |
+| Snowy biomes | Cold, crisp bluish air |
+| Jungle / bamboo jungle | Humid green haze |
+| Badlands (mesa) | Red dust and warm light |
+| Cherry grove | Dreamy pink haze |
+| Mushroom fields | Purple spore haze |
 
-| **Using Wyvern Loader** |
-|:-|
-| 1. Download and setup Wyvern from [here](https://github.com/mcbegamerxx954/wyvern_releases/releases/latest) |
-| 2. Open Minecraft then click 'Inject' in Wyvern |
-| 3. Import the resource pack and activate it in global resources. |
+### Other dimensions
+- **Nether**: warm ember haze in the fog
+- **The End**: deeper purple void haze
 
-### Linux / Mac
-This method is for [mcpelauncher-manifest](https://minecraft-linux.github.io/).
+### Performance
+- Lighter defaults: shorter wave range, and the extra cloud layer is off
+- **Lite subpack** for low-end phones: turns off waves, shimmer, rainbow, shooting stars, cloud shadow, extra fog effects, rain splash, snow dissolve, torch haze and more
+- Biome detection uses a cheap colour comparison (no square roots)
 
-| **Using MaterialBinLoader mod (Recommended): x86_64 arch** |
-|:-|
-| 1. Install [mcpelauncher-materialbinloader-mod](https://github.com/CrackedMatter/mcpelauncher-materialbinloader/releases/latest). |
-| 2. Import the resource pack and activate it in global resources. |
+---
 
-| **Using shaders mod: x86_64, x86, arm64, arm arch** |
-|:-|
-| 1. Download [mcpelauncher-shadersmod](https://github.com/GameParrot/mcpelauncher-shadersmod/releases/latest). |
-| 2. Follow this [guide](https://faizul726.github.io/guides/shadersmodinstallation) to setup. |
+## Install (Android)
 
+1. Install **MB Loader** (Minecraft Bedrock Loader) and open Minecraft **through MB Loader**.
+2. Open the `.mcpack` file to import it.
+3. Go to **Settings > Global Resources** and activate **Newb Aurora Storm**.
+4. Open the pack's settings to choose a subpack:
+   - **Default**: full effects
+   - **Lite**: best for low-end phones
+   - **Biome Debug**: tints blocks per detected biome (see Troubleshooting)
 
-### iOS
-Using shaders on iOS is not very straightforward and not recommended for beginners.
+Requires Minecraft Bedrock **1.26.50 or newer**.
 
-| **Using Minecraft with Hynis** |
-|:-|
-| 1. Download Minecraft with Hynis IPA file from our [Discord server](https://discord.com/invite/newb-community-844591537430069279). |
-| 2. Sideload it with your preferred sideloading tool. |
-| 3. Import the resource pack and activate it in global resources. |
+---
 
-<br>
+## Settings
 
-## Building
+All options are in `src/newb/config.h`. Each line has a comment with its range. Useful ones:
 
-### Install dependencies
-- [Git](https://git-scm.com/)
-- [Python](https://www.python.org/) 3.11 or higher required
-- Python packages:
-  - [lazurite](https://veka0.github.io/lazurite/#installation) (Must be `v0.10.0`. Newer or older version may not be supported)
-  - [rich](https://rich.readthedocs.io/en/stable/introduction.html#installation) (Must be `v14+`)
+| Setting | What it does |
+|---|---|
+| `NL_AURORA`, `NL_AURORA_COL1/2/3/4`, `NL_AURORA_SHIMMER`, `NL_AURORA_LAYER2`, `NL_AURORA_GLOW` | Northern lights brightness, palette, shimmer, second curtain, ground glow |
+| `NL_TWILIGHT_MIST`, `NL_SATURATION` | Sunrise/sunset mist, colour vividness |
+| `NL_RAIN_GLOOM`, `NL_RAIN_CLARITY`, `NL_RAIN_SPLASH` | Rain look |
+| `NL_SNOW_DISSOLVE`, `NL_SNOW_DISSOLVE_HEIGHT` | Snow fade near the ground |
+| `NL_STORM_WIND`, `NL_STORM_WATER_BUMP` | Storm strength |
+| `NL_TORCH_GLOW`, `NL_TORCH_HAZE` | Light source warmth |
+| `NL_CELESTIAL_WOBBLE` | Sun/moon sway in degrees |
+| `NL_DESERT_HAZE`, `NL_SWAMP_MIST`, `NL_BIRCH_SUN`, `NL_PALE_FOG`, `NL_DEEPDARK_DARKEN`, `NL_SNOW_BIOME`, `NL_JUNGLE_HUMID`, `NL_BADLANDS_DUST`, `NL_CHERRY_DREAM`, `NL_MUSHROOM_SPORE` | Biome strength (0.0 turns one off) |
+| `NL_NETHER_EMBER`, `NL_END_VOID` | Nether and End haze |
 
-### Get source code
-```
-git clone https://github.com/devendrn/newb-x-mcbe/ -c core.symlinks=true
-cd newb-x-mcbe
-```
+Comment out a line with `//` to turn an effect off. To save performance, turn off the effects you don't need.
 
-### Install dependencies from requirements.txt
-*Skip if you already have installed those versions.*
-```
-python -m pip install -r requirements.txt
-```
+---
 
-### Setup build environment
-> [!NOTE]
-> On Windows, run `.\build.bat` instead of `./build.sh` for all following commands.
+## Build from source (GitHub, no PC needed)
+
+1. Fork this repository on GitHub.
+2. Edit `src/newb/config.h` (or upload changed files).
+3. Open **Actions > build > Run workflow**, choose **Android**, run, and download the artifact.
+4. Zip the downloaded pack folder (if needed), rename it to `.mcpack`, and import it with MB Loader.
+
+On a PC you can instead run:
+
 ```
 ./build.sh setup
-```
-This will download shaderc binary and material data required to build shader.
-
-<br>
-
-### Compile specific shader materials
-```
-./build.sh mats
-```
-Compiled material.bin files will be inside `build/<platform>/`
-
-**Command usage:**
-```
-usage: build mats [-h] [-p {android,windows,ios,multiplatform}] [-m M [M ...]] [-s S]
-
-options:
-  -h, --help            show this help message and exit
-  -p {android,windows,multiplatform,ios}
-                        build profile
-  -m M [M ...]          build materials (eg: Sky)
-  -s S                  subpack config to use (eg: NO_WAVE)
+./build.sh pack -p android -v 1
 ```
 
-### Compile and build full shader pack
-```
-./build.sh pack
-```
+(Requires Python 3 and `pip install -r requirements.txt`.)
 
-The final mcpack will be inside `build/`.
+---
 
-**Command usage:**
-```
-usage: build pack [-h] [-p {android,windows,ios,multiplatform}] [--no-zip] [--no-label] [-v V]
+## Troubleshooting
 
-options:
-  -h, --help            show this help message and exit
-  -p {android,windows,multiplatform,ios}
-                        build profile
-  --no-zip              don't make archive
-  --no-label            don't label materials
-  -v V                  version number eg: 17
-```
+- **Biome effects don't show.** Biomes are detected from custom fog colours set in `assets/biomes_client.json` and `assets/fogs/`. If Minecraft ignores them, the effects stay off. Pick the **Biome Debug** subpack and walk through the biomes: red = desert, green = swamp, yellow = birch, white = pale garden, blue = deep dark, cyan = snowy, orange = jungle, dark red = badlands, magenta = cherry grove, purple = mushroom fields. If nothing tints, the detection is not working on your Minecraft version, please report it.
+- **Pale garden eyes don't glow.** This assumes the Creaking's eyes use Minecraft's emissive material. If they don't, only the white fog applies.
+- **Lag.** Use the **Lite** subpack, lower `NL_WAVE_RANGE`, comment out `NL_AURORA_LAYER2`, or comment out `NL_AURORA`.
+- **Odd fog colours without the shader.** The pack changes some biome fog colours so the shader can detect biomes. Load the pack only together with MB Loader.
+- **Black or pink blocks.** Your Minecraft version may be unsupported or a shader failed to compile. Send a screenshot and your device model.
 
-> [!TIP]
-> If you want to customize pack name, author, version and other details, you can do so in `src/newb/pack_config.toml`.
+---
 
-<br>
+## License and credits
 
-## Development
-
-Clangd can be used to get code completion and error checks for source files inside include/newb. Fake bgfx header and clangd config are provided for the same.
-- **Neovim**: Install clangd LSP.
-- **VSCode**: Install [vscode-clangd](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) extension.
-
-## License
-
-**Source Code:** The "Newb Shader" source code is licensed under the MIT License. You are free to modify, distribute, and create derivative works based on the source code.
-
-**Compiled Resource Packs (`.mcpack` files):** The compiled resource packs distributed by the "Newb Shader" project and its variant creators are copyrighted works with restrictions. See the `COPYRIGHT.txt` file within each resource pack for more information.
+- Shader source is under the **MIT License** (see `LICENSE`), originally by **devendrn** and **Newb Shader contributors**: https://github.com/devendrn/newb-x-mcbe
+- Modifications by **Mist TvT**.
+- This pack is not affiliated with Mojang or Microsoft.
