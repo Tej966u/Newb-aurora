@@ -3,7 +3,7 @@
 A mobile-friendly shader for **Minecraft Bedrock** (via **MB Loader**), with a vivid northern-lights sky, living storms, per-biome ambience and extra atmosphere for the Nether and the End.
 
 Based on **Newb X Legacy 0.16.56** by devendrn and the Newb Shader contributors (MIT License).
-Modified by **Mist TvT**.
+Modified by **Mist**.
 
 > Status: all changes beyond Newb X Legacy are **new and experimental**. Please report anything that looks wrong.
 
