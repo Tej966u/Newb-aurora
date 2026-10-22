@@ -24,6 +24,12 @@ Modified by **Mist TvT**.
 - **Storm wind**: plants, leaves and lanterns sway harder as rain increases
 - **Storm waves**: water gets rougher during rain
 
+### Textures and colour
+- **Texture pop**: an S-curve on block colours (`NL_TEXTURE_CONTRAST`)
+- **Fake depth**: texture pixels get a light/dark edge so flat blocks look more carved (`NL_TEXTURE_BUMP`)
+
+This is a shader, so it improves how the textures you already use look. It does not replace them. For new block art, use it together with a texture pack.
+
 ### Quality of life
 - **Twilight mist**: a soft golden mist at sunrise and sunset
 - Slightly more vivid colours by default (`NL_SATURATION`)
@@ -47,7 +53,7 @@ Modified by **Mist TvT**.
 
 ### Other dimensions
 - **Nether**: warm ember haze in the fog
-- **The End**: deeper purple void haze and a **big ringed planet** in the sky with glowing atmosphere and slowly moving cloud bands
+- **The End**: deeper purple void haze and a **big Saturn-inspired planet** in the sky: banded turbulent atmosphere, a polar hexagon, a real 3D ring with a Cassini division, ring shadow cast on the planet, planet shadow cast on the ring, a glowing lit limb and a small moon
 
 ### Performance
 - Lighter defaults: shorter wave range, and the extra cloud layer is off
@@ -85,7 +91,8 @@ All options are in `src/newb/config.h`. Each line has a comment with its range. 
 | `NL_CELESTIAL_WOBBLE` | Sun/moon sway in degrees |
 | `NL_DESERT_HAZE`, `NL_SWAMP_MIST`, `NL_BIRCH_SUN`, `NL_PALE_FOG`, `NL_DEEPDARK_DARKEN`, `NL_SNOW_BIOME`, `NL_JUNGLE_HUMID`, `NL_BADLANDS_DUST`, `NL_CHERRY_DREAM`, `NL_MUSHROOM_SPORE` | Biome strength (0.0 turns one off) |
 | `NL_NETHER_EMBER`, `NL_END_VOID` | Nether and End haze |
-| `NL_END_PLANET`, `NL_END_PLANET_RING`, `NL_END_PLANET_SIZE`, `NL_END_PLANET_DIR`, `NL_END_PLANET_COL1/2/3`, `NL_END_PLANET_ATMOS`, `NL_END_PLANET_GLOW` | End planet: on/off, ring, size, position, colours, glow |
+| `NL_END_PLANET`, `NL_END_PLANET_RING`, `NL_END_PLANET_MOON`, `NL_END_PLANET_SIZE`, `NL_END_PLANET_DIR`, `NL_END_PLANET_AXIS`, `NL_END_PLANET_LIGHT`, `NL_END_PLANET_COL1/2/3`, `NL_END_PLANET_RING_COL`, `NL_END_PLANET_ATMOS`, `NL_END_PLANET_GLOW` | End planet: on/off, ring, moon, size, position, tilt, light, colours, atmosphere (Neptune and Jupiter colour presets are in `config.h`) |
+| `NL_TEXTURE_CONTRAST`, `NL_TEXTURE_BUMP` | Block texture pop and fake depth (comment out `NL_TEXTURE_BUMP` if it looks noisy) |
 
 Comment out a line with `//` to turn an effect off. To save performance, turn off the effects you don't need.
 
